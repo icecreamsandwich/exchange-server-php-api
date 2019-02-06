@@ -1,0 +1,23 @@
+# Apache Rewrite Rules
+<IfModule mod_mime.c>
+#AddType application/x-httpd-php .php
+</IfModule>
+
+ <IfModule mod_rewrite.c>
+  Options +FollowSymLinks
+  Options +MultiViews
+  RewriteEngine On
+  RewriteBase /
+
+# Remove .php-extension from url
+  RewriteCond %{REQUEST_FILENAME} !-d 
+  RewriteCond %{REQUEST_FILENAME}\.php -f 
+  RewriteRule ^(.*)$ $1.php
+
+# Remove .html from url
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME}\.html -f
+  RewriteRule ^([^\.]+)/$ $1.html
+
+# End of Apache Rewrite Rules
+ </IfModule>
