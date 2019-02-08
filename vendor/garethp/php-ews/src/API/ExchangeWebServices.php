@@ -304,6 +304,7 @@ class ExchangeWebServices
         $request = MiddlewareRequest::newRequest($name, $arguments, $this->options);
         $response = $this->executeMiddlewareStack(self::$middlewareStack, $request);
         $response = $response->getResponse();
+        //print_r($response);exit;
         return $response;
     }
 
@@ -368,8 +369,9 @@ class ExchangeWebServices
         }
 
         $response = $response->getResponseMessages();
+        
         $response = $this->drillDownResponseLevels($response);
-
+        
         return $response;
     }
 

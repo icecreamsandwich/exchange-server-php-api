@@ -5,9 +5,9 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 use garethp\ews\API;
 // Set connection information.
-$server = 'ad.gasf.com';
+$server = 'ex.gasf.com';
 $username = 'Administrator';
-$password = 'trueidea121*';
+$password = 'tech121login*';
 
 $api = API::withUsernameAndPassword($server, $username, $password);
 
@@ -16,10 +16,10 @@ else echo "cant connect to ews";
 exit; */
 
 $calendar = $api->getCalendar();
-$start = new DateTime('8:00 AM');
-$end = new DateTime('9:00 AM');
+$start = new DateTime('12:00 AM');
+$end = new DateTime('04:00 AM');
 $createdItemIds = $calendar->createCalendarItems(array(
-    'Subject' => 'Test',
+    'Subject' => 'New calendar',
     'Start' => $start->format('c'),
     'End' => $end->format('c')
 ));
