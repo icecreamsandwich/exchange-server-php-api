@@ -92,10 +92,10 @@ class MailAPI extends API
             )
         );
 
-        if (!empty($options['Restriction'])) {
+       /*  if (!empty($options['Restriction'])) {
             $options['Restriction'] = $this->formatRestrictions($options['Restriction']);
         }
-
+ */
         $request = array_replace_recursive($request, $options);
 
         $request = Type::buildFromArray($request);

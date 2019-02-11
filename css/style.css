@@ -69,3 +69,42 @@ body {
 h2{
     margin-left : 600px;
 }
+
+/*custom table showing user details */
+
+.demo_table, {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  margin-left: 300px !important;
+}
+
+.demo_table td{
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.demo_table tr:nth-child(even){background-color: #f2f2f2;}
+
+.demo_table tr:hover {background-color: #ddd;}
+
+.demo_table th{
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+}
+
+th[st-sort]:not(.st-sort-ascent):not(.st-sort-descent) span#sort.glyphicon:after{
+  content: "\e150";
+  color: #DDD
+}
+th.st-sort-ascent span#sort.glyphicon:after{
+  content: "\e155";
+  color: #337ab7
+}
+th.st-sort-descent span#sort.glyphicon:after{
+  content: "\e156";
+  color: #b77a33
+}

@@ -8,11 +8,8 @@
 <body>
 
 <div class="sidenav">
-  <a href="mail/listMail">Mail</a>
-  <a href="contacts/listContacts">Contacts</a>
-  <!-- <a href="#services">Services</a>
-  <a href="#clients">Clients</a>
-  <a href="#contact">Contact</a> -->
+  
+<a href="contacts/listContacts">Contacts</a>
   <button class="dropdown-btn">Calendar 
     <i class="fa fa-caret-down"></i>
   </button>
@@ -20,7 +17,13 @@
       <a href="calendar/getCalendarItems">Get Calendar</a>
       <a href="calendar/createCalendarItem.php">Create Calendar</a>
   </div>
-  <!-- <a href="#contact">Search</a> -->
+  <button class="dropdown-btn">Mail 
+    <i class="fa fa-caret-down"></i>
+  </button>
+  <div class="dropdown-container">
+      <a href="mail/listMail">List Mails</a>
+      <a href="mail/sendMail">Send Mail</a>
+  </div>
 </div>
 
 <h2>Exchange Server Demo</h2>

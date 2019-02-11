@@ -1,3 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="../css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div class="sidenav">
+  <a href="../contacts/listContacts">Contacts</a>
+  <button class="dropdown-btn">Calendar 
+    <i class="fa fa-caret-down"></i>
+  </button>
+  <div class="dropdown-container">
+      <a href="../calendar/getCalendarItems">Get Calendar</a>
+      <a href="../calendar/createCalendarItem.php">Create Calendar</a>
+  </div>
+  <button class="dropdown-btn">Mail 
+    <i class="fa fa-caret-down"></i>
+  </button>
+  <div class="dropdown-container">
+      <a href="../mail/listMail">List Mails</a>
+      <a href="../mail/sendMail">Send Mail</a>
+  </div>
+</div>
+
+<h2>Exchange Server Demo</h2>
+
+<script>
+function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+}
+</script>
+<script src="../js/script.js"></script>
+
 <?php
 
 // Autoload files using the Composer autoloader.
@@ -13,28 +53,45 @@ $api = API::withUsernameAndPassword($server, $username, $password);
 
 $calendar = $api->getCalendar();
 $items = $calendar->getCalendarItems();
-
+#print_r($items);exit;
 //iterate through the calendar items 
 $calendarItems = $items->getItems();
-
-foreach ($calendarItems as $key => $value) {
-   $start['start'][] = $value->getStart();
-   $end['end'][] = $value->getEnd();
-   $subjects['subjects'][] = $value->getParentFolderId()->subject;
-}
-
-$merged_ar = array_merge($start, $end, $subjects);
-echo json_encode($merged_ar,TRUE);exit;
+#print_r($calendarItems[0]->getDuration());exit;
 
 /* 
+echo  $calendarItems[0]->getSubject().'<br>';
+echo  $calendarItems[0]->getStart().'<br>';
+echo  $calendarItems[0]->getEnd().'<br>';
+echo  $calendarItems[0]->getDateTimeStamp().'<br>';
+echo  $calendarItems[0]->getLocation().'<br>';
+$di = new DateInterval($calendarItems[0]->getDuration());
+$duration =  $di->format('%h:%i:%s');
+exit; */
 
-//Get all items from midday today
-$items = $calendar->getCalendarItems('12:00 PM');
-//Get all items from 8 AM to 9 AM today
-$start = new DateTime('8:00 AM');
-$end = new DateTime('9:00 AM');
-$items = $calendar->getCalendarItems($start, $end);
 
-print_r($items);exit;
-//Get a list of items in a Date Range
-$items = $calendar->getCalendarItems('31/05/2015', '31/06/2015'); */
+$html = "<table class='demo_table' style='margin-left:300px;'>
+            <th>Subject</th>
+            <th>Start</th>
+            <th>End</th>
+            <th>Timestamp</th>
+            <th>Location</th>
+            <th>Duration</th>
+            ";
+    foreach ($calendarItems as $key => $value) {      
+        $html .= '<tr>
+                    <td>'.$value->getSubject().'</td>
+                    <td>'.$value->getStart().'</td>
+                    <td>'.$value->getEnd().'</td>
+                    <td>'.$value->getDateTimeStamp().'</td>
+                    <td>'.$value->getLocation().'</td>
+                    <td>'.$duration.'</td>
+                   
+            </tr>';
+    }
+    $html .= "</table>";
+
+echo $html;
+?>
+
+</body>
+</html>
