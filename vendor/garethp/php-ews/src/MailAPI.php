@@ -209,4 +209,35 @@ class MailAPI extends API
             $options
         );
     }
+
+    /**
+     * Get all mail items in the outbox/ Sent
+     *
+     * @param Type\FolderIdType
+     * @param array $options
+     * @return Type\MessageType[]
+     */
+    public function getAllSentItems($folderId = null, $options = array())
+    {
+        $sentItems = $this->getFolderByDistinguishedId('sentitems')->getFolderId();
+        
+        $request = array(
+            'Traversal' => 'Shallow',
+            'ItemShape' => array(
+                'BaseShape' => 'AllProperties'
+            ),
+            'ParentFolderIds' => array(
+                'FolderId' =>  $sentItems->toXmlObject()
+            )
+        );
+
+        if (!empty($options['Restriction'])) {
+            $options['Restriction'] = $this->formatRestrictions($options['Restriction']);
+        }
+ 
+        $request = array_replace_recursive($request, $options);
+
+        $request = Type::buildFromArray($request);
+        return $this->getClient()->FindItem($request);
+    }
 }

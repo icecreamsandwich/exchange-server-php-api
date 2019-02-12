@@ -4,6 +4,8 @@
 require_once __DIR__ . '/vendor/autoload.php';
 
 use garethp\ews\API;
+use garethp\ews\API\Type;
+use garethp\ews\MailAPI;
 // Set connection information.
 $server = 'ex.gasf.com';
 $username = 'Administrator';
@@ -47,13 +49,13 @@ if(isset($_POST['submitBtnEmail'])){
     $username = 'Administrator';
     $password = 'tech121login*';
 
-   /*  $api = MailAPI::withUsernameAndPassword($server, $username, $password);
+    $api = MailAPI::withUsernameAndPassword($server, $username, $password);
     $message = new Type\MessageType();
     $message->setBody($body);
     $message->setSubject($subject);
     $message->setToRecipients('admin@mail.gasf.com');
-    $return = $api->sendMail($message); */
-    Header('Location:mail/sendMail');
+    $return = $api->sendMail($message);
+    Header('Location:mail/listMail');
 }
 
 ?>

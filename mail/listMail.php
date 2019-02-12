@@ -54,6 +54,8 @@ $password = 'tech121login*';
 $api = MailAPI::withUsernameAndPassword($server, $username, $password);
 
 $mails = $api->getMailItems();
+$sentMails = $api->getAllSentItems();
+
 #$mailItems = $mails->getItems();
 #print_r($mails[0]->getItemClass());exit;
 
@@ -66,9 +68,8 @@ echo $mails[0]->getDateTimeSent().'<br>';
 echo $mails[0]->getDisplayCc().'<br>';
 echo $mails[0]->getDisplayTo().'<br>';
 echo $mails[0]->getItemClass() */
-
-
-$html = "<table class='demo_table' style='margin-left:300px;'>
+ 
+$html = "<h2>Inbox</h2><br><table class='demo_table' style='margin-left:300px;'>
             <th>Conversation Topic</th>
             <th>Name</th>
             <th>Email Address</th>
@@ -96,7 +97,35 @@ $html = "<table class='demo_table' style='margin-left:300px;'>
     }
     $html .= "</table>";
 
-echo $html;
+$html2 = "<h2>Sent items</h2><table class='demo_table' style='margin-left:300px;'>
+            <th>Conversation Topic</th>
+            <th>Name</th>
+            <th>Email Address</th>
+            <th>DateTime Received</th>
+            <th>Subject</th>
+            <th>DateTimeSent</th>
+            <th>Reply To</th>
+            <th>Display Cc</th>
+            <th>ItemClass</th>
+            ";
+    foreach ($sentMails as $key => $value) {   
+      
+        $html2 .= '<tr>
+                    <td>'.$value->getConversationTopic().'</td>
+                    <td>'.$value->getSender()->getNonNullItems()['mailbox']->getName().'</td>
+                    <td>'.$value->getSender()->getNonNullItems()['mailbox']->getEmailAddress().'</td>
+                    <td>'.$value->getDateTimeReceived().'</td>
+                    <td>'.$value->getSubject().'</td>
+                    <td>'.$value->getDateTimeSent().'</td>
+                    <td>'.$value->getDisplayTo().'</td>
+                    <td>'.$value->getDisplayCc().'</td>
+                    <td>'.$value->getItemClass().'</td>
+                   
+            </tr>';
+    }
+    $html2 .= "</table>";
+
+echo $html.$html2;
 
 ?>
 
