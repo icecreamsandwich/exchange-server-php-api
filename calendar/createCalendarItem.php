@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 </head>
 <body>
-
+<h2>Schedule Event</h2>
 <div class="sidenav">
   <a href="../contacts/listContacts">Contacts</a>
   <button class="dropdown-btn">Calendar 
@@ -36,7 +36,7 @@ function closeNav() {
 </script>
 <script src="../js/script.js"></script>
 <div>
-  <h3>Schedule event</h3>
+  
   <form method="POST" action="../submitHandler.php">
     <table class='demo_table'>
   <tr>
