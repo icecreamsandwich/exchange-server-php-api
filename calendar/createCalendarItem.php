@@ -4,43 +4,7 @@
 <link rel="stylesheet" type="text/css" href="../css/style.css">
 <link rel="stylesheet" type="text/css" href="../css/jquery.timepicker.css">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-<style>
-input[type=text], select {
-  width: 20%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-}
-
-input[type=submit] {
-  width: 20%;
-  background-color: #4CAF50;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-input[type=submit]:hover {
-  background-color: #45a049;
-}
-
-div {
-  border-radius: 5px;
-  background-color: #f2f2f2;
-  padding: 20px;
-}
-form{
-    margin-left:400px;
-}
-</style>
 <body>
 
 <div class="sidenav">
@@ -71,27 +35,31 @@ function closeNav() {
 }
 </script>
 <script src="../js/script.js"></script>
-
-
-
 <div>
-<h3>Schedule event</h3>
-  <form method="POST" action="submitHandler.php">
-    <label for="ename">Event Name : </label>
-    <input type="text" id="ename" name="ename" placeholder="Title">
-    <br>
-    <label for="date">Date : </label>
-    <input type="text" id="datefield" name="datefield" placeholder="Date" data-time-format="H:i:s">
-    <br>
-    <label for="from">From : </label>
-    <input type="text" id="from" name="from" placeholder="From" data-time-format="H:i:s">
-    <br>
-    <label for="to">To : </label>
-    <input type="text" id="to" name="to" placeholder="To" data-time-format="H:i:s">
-    <br>
+  <h3>Schedule event</h3>
+  <form method="POST" action="../submitHandler.php">
+    <table class='demo_table'>
+  <tr>
+    <td>Event Name</td>
+    <td><input type="text" id="ename" name="ename" placeholder="Title"></td>
+  </tr>
+  <tr>
+    <td>Date :</td>
+    <td><input type="text" id="datefield" name="datefield" placeholder="Date" data-time-format="H:i:s"></td>
+  </tr>
+  <tr>
+    <td>From :</td>
+    <td><input type="text" id="from" name="from" placeholder="From" data-time-format="H:i:s"></td>
+  </tr>
+  <tr>
+    <td>To :</td>
+    <td><input type="text" id="to" name="to" placeholder="To" data-time-format="H:i:s"></td>
+  </tr>
+  </table>
     <input type="submit" name="submitBtn" value="Submit">
   </form>
 </div>
+
 <?php
 
 // Autoload files using the Composer autoloader.
